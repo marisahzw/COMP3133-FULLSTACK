@@ -1,0 +1,33 @@
+<div *ngIf="selectedHero">
+
+
+    <h2>{{selectedHero.name | uppercase | removeSpaces}} Details</h2>
+    <div><span>id: </span>{{selectedHero.id}}</div>
+    <div><span>name: </span>{{selectedHero.name | removeSpaces}}</div>
+
+    <hr>
+
+    <label for="name">Hero name: </label>
+    <input id="name" [ngModel]="selectedHero.name | removeSpaces" placeholder="name">
+     <!-- 
+        Two-way data binding
+        by using the ngModel directive, we can bind the hero.name property from component to the input element
+    -->
+</div>
+
+<hr>
+
+<h2>My Heroes</h2>
+<ul class="heroes" *ngFor="let hero of heroes">
+  <li>
+    <button type="button" [class.selected]="hero === selectedHero" (click)="selectHero(hero)" > 
+        <!-- the [class.selected]="hero === selectedHero" expression binds the selected class to the button element when the condition hero === selectedHero is true -->
+      <span class="badge">{{hero.id}}</span>
+      <span class="name">{{hero.name | removeSpaces}}</span>
+    </button>
+  </li>
+</ul>
+
+<hr>
+
+<input type="text" appInputFormat>
